@@ -55,10 +55,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td>
-                    <a asp-action="Register" asp-controller="Events" asp-route-eventId="@item.Id">@Html.DisplayFor(modelItem => item.EventName)</a>
-
-                </td>
             </tr>
         }
     </tbody>

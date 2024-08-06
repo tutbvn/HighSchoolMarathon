@@ -17,11 +17,11 @@ namespace HighSchoolMarathon.DataAccess
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Runner> Runners { get; set; }
+        public DbSet<RunnerRegistration> RunnerRegistrations { get; set; }
 
         //public DbSet<Organizer> Organizers { get; set; }
 
-        public DbSet<Event> Events { get; set; }
+        public DbSet<RunningEvent> RunningEvents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

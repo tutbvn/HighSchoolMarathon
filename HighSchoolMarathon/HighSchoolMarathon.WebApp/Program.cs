@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using HighSchoolMarathon.WebApp.Models;
 using HighSchoolMarathon.DataAccess;
+using HighSchoolMarathon.WebApp.Infrastructure;
+using HighSchoolMarathon.DataAccess.Repositories;
+using HighSchoolMarathon.WebApp.Controllers;
 
 namespace HighSchoolMarathon.WebApp
 {
@@ -45,7 +48,19 @@ namespace HighSchoolMarathon.WebApp
             });
 
             builder.Services.AddScoped<IEmailSender, EmailSender>();
-            
+            // Register the EventRepository
+            builder.Services.AddScoped<IEventRepository, EventRepository>();
+            builder.Services.AddScoped<IRunnerRepository, RunnerRepository>();
+            // Register NotificationController
+            builder.Services.AddScoped<AutoAgentController>();
+
+            // Register AutoMapper
+            builder.Services.AddAutoMapper(typeof(MarathonProfile));
+            // Add SignalR service
+            builder.Services.AddSignalR();
+            //builder.Services.AddSignalRCore();
+
+            builder.Services.AddHostedService<AutoAgentService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -70,6 +85,9 @@ namespace HighSchoolMarathon.WebApp
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+           
+            // Map the SignalR hub
+            app.MapHub<MarathonEventHub>("/marathonEventHub");
             app.MapRazorPages();
 
             app.Run();

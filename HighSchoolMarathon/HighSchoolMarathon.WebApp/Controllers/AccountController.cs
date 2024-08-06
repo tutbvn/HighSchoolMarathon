@@ -31,6 +31,22 @@ namespace HighSchoolMarathon.WebApp.Controllers
             return View();
         }
 
+        // POST: /Account/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        // GET: /Account/AccessDenied
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         // POST: /Account/Login
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)

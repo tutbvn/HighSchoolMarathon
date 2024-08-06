@@ -4,6 +4,7 @@ using HighSchoolMarathon.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HighSchoolMarathon.DataAccess.Migrations
 {
     [DbContext(typeof(HighSchoolMarathonContext))]
-    partial class HighSchoolMarathonContextModelSnapshot : ModelSnapshot
+    [Migration("20240806062504_SomethingChanges")]
+    partial class SomethingChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +99,9 @@ namespace HighSchoolMarathon.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("NumberOfRunners")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("RegistrationEndDate")
                         .HasColumnType("datetime2");
@@ -247,15 +253,15 @@ namespace HighSchoolMarathon.DataAccess.Migrations
                         {
                             Id = "8D679F63-72D2-4782-9717-5FE9E7CCA509",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "894b227d-812f-4fb1-b882-3542418bb2e3",
+                            ConcurrencyStamp = "240d186c-c500-48e1-af85-4d0bd99b9834",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEorrm853aFoLc/iE+VemwQAq1k7HB8djeNfpW8uUCxiAzCy9Fy25q1hX8rGBhQ3og==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFDigjYGj9Wf/MVD67/RXQ70m2/zj7j3YyeGnn4H4g388zgBibcz/vgSP/BmenyNKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ed9fb677-ac8e-4038-81eb-b2f70b45998d",
+                            SecurityStamp = "d074f757-c7b0-48b7-a648-d1afd588c985",
                             TwoFactorEnabled = false,
                             UserName = "admin@example.com"
                         });
